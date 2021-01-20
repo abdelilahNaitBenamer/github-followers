@@ -1,0 +1,70 @@
+<form #f="ngForm" (ngSubmit)="submit(f)">
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input
+      required
+      minlength="4"
+      maxlength="20"
+      pattern="[a-zA-Z]+"
+      ngModel
+      name="lastName"
+      #lastName="ngModel"
+      (change)="log(lastName)"
+      type="text"
+      class="form-control"
+      id="lastName">
+
+    <div class="alert alert-danger"
+     *ngIf="lastName.touched && !lastName.valid">
+        <div *ngIf="lastName?.errors?.required" >
+          Ce champ est obligatoir
+        </div>
+        <div *ngIf="lastName?.errors?.minlength" >
+          Au moins {{lastName?.errors?.minlength?.actualLength}}
+          /   {{lastName?.errors?.minlength?.requiredLength}} chars
+        </div>
+        <div *ngIf="lastName?.errors?.pattern" >
+          Just alphabtitique
+        </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input ngModel name="firstName" #firstName type="text" class="form-control" id="firstName">
+  </div>
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea ngModel name="comment" #comment type="text" class="form-control" id="comment"></textarea>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ngModel name="subscrib"> Subscrib
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input name="contactMethod2" ngModel value="1" type="radio"> Email
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input name="contactMethod2" ngModel value="2" type="radio"> Phone
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="ContactMethod">
+      Méthode de contact
+    </label>
+    <select class="form-control" ngModel name="contactMethod" id="ContactMethod">
+      <option value=""></option>
+      <option *ngFor="let item of options" [ngValue]="item">{{item.label}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-dark" [disabled]="!f.valid">Save</button>
+  </div>
+  <p>
+    {{f.value | json}}
+  </p>
+</form>
+

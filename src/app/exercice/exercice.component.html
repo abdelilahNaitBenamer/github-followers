@@ -1,0 +1,13 @@
+<div style="font-size: 100px;">
+  <i  class="fa"
+    [ngClass]="{
+      'fa-star':isEmpty,
+      'fa-star-o':!isEmpty
+    }"
+    [ngStyle]="{
+      'color': isEmpty ? 'purple' : 'pink',
+      'font-size': isEmpty ? '80px' : '50px'
+    }"
+   aria-hidden="true"
+  (click)="onChangeStar()"></i>
+</div>

@@ -1,0 +1,7 @@
+<div class="container">
+  <p></p>
+  <button (click)="onClick" class="btn btn-success">Click me</button>
+  <app-exercice [isFavorit]="star.isEmpty" (eventOutput)="onChangeStar($event)"></app-exercice>
+  <img [src]="imgUrl" [alt]="title">
+</div>
+

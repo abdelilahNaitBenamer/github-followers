@@ -1,0 +1,41 @@
+
+<form>
+  <legend>New Post</legend>
+
+  <div class="form-group">
+    <label for="id">Post ID</label>
+    <input [(ngModel)]="post.id" name="id" type="text" class="form-control" id="id" disabled>
+  </div>
+
+  <div class="form-group">
+    <label for="userId">User ID</label>
+    <input [(ngModel)]="post.userId" name="userId" type="text" class="form-control" id="userId" placeholder="User Id">
+  </div>
+
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input [(ngModel)]="post.title" name="title" type="text" class="form-control" id="title" placeholder="Title">
+  </div>
+
+  <div class="form-group">
+    <label for="body">Body</label>
+    <textarea [(ngModel)]="post.body" name="body" type="text" class="form-control" id="body" placeholder="Body"></textarea>
+  </div>
+
+  <button (click)="createPost()" class="btn btn-danger" *ngIf="mode" >Add</button>
+  <button (click)="updatePost()" class="btn btn-warning" *ngIf="!mode" >Update</button>
+
+</form>
+<hr/>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let post of posts" >
+    <p>User ID : {{post.userId}}</p>
+    <p>Post ID :{{post.id}}</p>
+    <p>Title :{{post.title}}</p>
+    <p>Body: {{post.body}}</p>
+  <i class="fa fa-edit" (click)="editPost(post)" [ngStyle]="{'font-size': '40px', 'cursor':'pointer'}"></i>
+  <span></span>
+  <i class="fa fa-trash" (click)="deletePost(post)" [ngStyle]="{'font-size': '40px', 'cursor':'pointer'}"></i>
+
+  </li>
+</ul>
